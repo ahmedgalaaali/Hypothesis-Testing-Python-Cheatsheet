@@ -1,4 +1,4 @@
-# Hypothesis-Testing-Python-Cheatsheet
+# Hypothesis Testing Python Cheatsheet
 
 ## One Sample & Two Sample z-test
 
@@ -61,3 +61,25 @@ ttest, p_val = ttest_1samp(a=data.charges, popmean=mu, alternative="two-sided")
 - `a`: array of data points to be tested
 - `popmean`: population mean
 - `alternative`: type of tailed test
+
+---
+
+## Levene's & Two-Sample t-test
+>The two-sample t-test is a test to compare between the means of two numerical groups. Before the test is perform we must conduct a levene's test, **to compare the two groups variances**.
+
+```python
+from scipy.stats import levene
+lev_stats, lev_sign = levene(group1, group2)
+```
+**Interpretation:** if the levene's significance is:
+- Less than p-value: *equal variances not assumed*.
+    - **Python Action:** set `equal_var` to `Fales`
+    - **SPSS Action:** Read the bottom line of the table
+- Greater than p-value: *equal variances assumed*
+    - **Python Action:** set `equal_var` to `Fales`
+    - **SPSS Action:** Read the bottom line of the table
+
+```python
+from scipy.stats import ttest_ind
+tscore, pvalue = ttest_ind(smokers_charge, non_smokers_charge, equal_var=False)
+```
