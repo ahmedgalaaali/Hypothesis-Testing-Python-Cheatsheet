@@ -83,3 +83,33 @@ lev_stats, lev_sign = levene(group1, group2)
 from scipy.stats import ttest_ind
 tscore, pvalue = ttest_ind(smokers_charge, non_smokers_charge, equal_var=False)
 ```
+
+## Chi Square Test
+>Used when dealing with categorical data / frequencies.
+
+$$X^2=\frac{(O-E)^2}{E}$$
+
+### 1. Goodness of Fit (one variable)
+> Used to test of a set of data matcches an expected, claimed or historical distribution. **(Nonparametric)**
+
+```python
+from scipy.stats import chisquare
+observed_counts = data['region'].value_counts()
+total_n = len(data)
+expected_counts = [total_n / 4] * 4      # 4 represents the number of unique categorical values
+chi2_stat, p_val = stats.chisquare(f_obs=observed_counts, f_exp=expected_counts)
+```
+
+### 2. Test of Independence (Two Variables)
+> Used to test if a 2 sets of categorical data are significantly associated.
+
+```python
+from scipy.stats import chisquare
+homogeneity_table = pd.crosstab(category_1, category_2)
+chi2, p_val, dof, expected = stats.chi2_contingency(homogeneity_table)
+```
+
+### Interpretation
+1. SPSS first line: Is the test safe for this case?
+2. Stats: $$X^2$$, p-value, df
+3. look at the percentage in the cross table
