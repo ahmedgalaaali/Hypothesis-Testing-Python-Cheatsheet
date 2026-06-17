@@ -101,7 +101,7 @@ chi2_stat, p_val = stats.chisquare(f_obs=observed_counts, f_exp=expected_counts)
 ```
 
 ### 2. Test of Independence (Two Variables)
-> Used to test if a 2 sets of categorical data are significantly associated.
+> Used to test if a 2 sets of categorical data are significantly associated. **(Crosstab)**
 
 ```python
 from scipy.stats import chisquare
